@@ -39,10 +39,10 @@ const Header: React.FC = () => {
           <nav className="flex flex-col space-y-4 p-4 text-center">
             <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Home</a>
             <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Courses</a>
-            <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Dashboard</a>
+            <a href="/dashboard" className="text-gray-700 hover:text-yellow-500 transition">Dashboard</a>
             <a href="#" className="text-gray-700 hover:text-yellow-500 transition">About</a>
             <button className="bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition">
-              Sign In
+              Sign Up
             </button>
           </nav>
         </div>
