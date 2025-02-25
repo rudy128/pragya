@@ -1,0 +1,20 @@
+{
+  "name": "pragya",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "cd server && npm start",
+    "start:client": "cd client && pnpm run dev",
+    "start": "concurrently \"npm run start:server\" \"pnpm run start:client\"",
+    "pragya": "npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
