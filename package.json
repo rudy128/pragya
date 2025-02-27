@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:server": "cd server && npm start",
-    "start:client": "cd client && pnpm run dev",
-    "start": "concurrently \"npm run start:server\" \"pnpm run start:client\"",
-    "pragya": "npm start",
+    "dev:server": "cd server && pnpm start",
+    "dev:client": "cd client && pnpm run dev && exit 0",
+    "dev": "concurrently \"pnpm run dev:server\" \"pnpm run dev:client\"",
     "install:client":"cd client && pnpm install",
-    "install:server":"cd server && npm install",
-    "install": "npm i && concurrently \"npm run install:server\" \"pnpm run install:client\""
+    "install:server":"cd server && pnpm install",
+    "set-up": "pnpm i && pnpm run install:server && pnpm run install:client"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FaBars, FaTimes, FaRegFileAlt, FaClock, FaFolderOpen, FaArchive, FaStar, FaPlus, FaBook, FaLayerGroup, FaCogs, FaTicketAlt } from "react-icons/fa";
-import { FaTicket } from "react-icons/fa6";
+// import { FaBars, FaTimes, FaRegFileAlt, FaClock, FaFolderOpen, FaArchive, FaStar, FaPlus, FaBook, FaLayerGroup, FaCogs, FaTicketAlt } from "react-icons/fa";
+import { FaBook, FaTicket } from "react-icons/fa6";
 
 // const Sidebar = () => {
 //   const [isOpen, setIsOpen] = useState(false);

@@ -40,3 +40,9 @@ app.post('/signin', async (req, res)=>{
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+
+process.on('SIGINT', () => {
+  console.log('Server is shutting down...');
+  process.exit(0); // Gracefully shut down the server
+});
