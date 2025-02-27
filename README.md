@@ -14,7 +14,6 @@ npm install -g pnpm
 docker build -t pragya-mongodb .
 docker run -d -p 27017:27017 --name pragya-mongodb mongodb
 pnpm run set-up
-pnpm dlx prisma generate
 ```
 ## Create a .env file in server. Use .env.example to create one properly
 
