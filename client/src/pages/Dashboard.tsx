@@ -1,5 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import { useEffect } from "react";
 
+
+const data = {
+  heading: '',
+  date: '',
+  trainers: [
+    'Bagus Fikri - Project Manager',
+    'Raihan Fikri - Project Manager',
+    'Priyanshi - Admin Dept.',
+  ],
+
+}
 
 const Header = () => {
   return (
@@ -16,11 +29,9 @@ const TrainerList = () => {
   return (
     <div className="p-4">
       <h2 className="font-bold">Trainer</h2>
-      <div className="mt-2">
-        <p>Bagus Fikri - Project Manager</p>
-        <p>Raihan Fikri - Project Manager</p>
-        <p>Tea Assidida - Admin Dept.</p>
-      </div>
+      {data.trainers.map((trainer, index) =>(
+        <p key={index} className="">{trainer}</p>
+      ))}
       <button className="mt-2 text-yellow-500">+ Add Trainer</button>
     </div>
   );
@@ -55,8 +66,15 @@ const Assignees = () => {
 };
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if (!token) {
+      navigate('/signin')
+    }
+  },[navigate])
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Header />

@@ -4,6 +4,7 @@ import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+
   return (
     <header className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
       {/* Logo */}
@@ -19,17 +20,17 @@ const Header: React.FC = () => {
 
       {/* Navigation (Desktop) */}
       <nav className="hidden md:flex space-x-6">
-        <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Home</a>
-        <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Courses</a>
-        <a href="#" className="text-gray-700 hover:text-yellow-500 transition">Dashboard</a>
-        <a href="#" className="text-gray-700 hover:text-yellow-500 transition">About</a>
+        <a href="/" className="text-gray-700 hover:text-yellow-500 transition">Home</a>
+        <a href="/courses" className="text-gray-700 hover:text-yellow-500 transition">Courses</a>
+        <a href="/dashboard" className="text-gray-700 hover:text-yellow-500 transition">Dashboard</a>
+        <a href="/about" className="text-gray-700 hover:text-yellow-500 transition">About</a>
       </nav>
 
       {/* User Profile (Desktop) */}
       <div className="hidden md:flex items-center space-x-4">
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
+        <a href="/signin" className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
           Sign In
-        </button>
+        </a>
         <FaUserCircle className="text-gray-600 text-2xl cursor-pointer" />
       </div>
 

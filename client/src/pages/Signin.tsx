@@ -1,8 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaApple, FaGoogle } from "react-icons/fa";
 import meeting from "../assets/students.jpg";
+import { useNavigate } from "react-router-dom";
+
+type SignInErrors = {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
+type ResultData = {
+  message: string,
+  token: string
+}
 
 const SignIn: React.FC = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState<SignInErrors>()
+
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      navigate('/dashboard')
+    }
+  }, [navigate])
+
+
+  const handleSubmit = async(event: React.FormEvent<HTMLFormElement>)=>{
+    event.preventDefault()
+    if (password.length < 8) {
+      setError({password: 'Password must be at least 8 characters'})
+      return
+    } else {
+      setError({password: ''})
+    }
+    const data = {
+      name:name,
+      email:email,
+      password:password
+    }
+    console.log(data)
+    const result = await fetch('http://localhost:3001/signin',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(data)
+    })
+    if (!result.ok){
+      console.log("Error: Can't connect to server")
+    } else {
+      const data: ResultData = await result.json()
+      localStorage.setItem('token', data.token )
+      navigate('/dashboard')
+      console.log(data)
+    }
+  }
   return (
     <div className="flex flex-col md:flex-row h-screen w-full bg-gradient-to-r from-gray-100 to-yellow-100">
       {/* Left Panel (Sign In Form) */}
@@ -10,20 +67,35 @@ const SignIn: React.FC = () => {
         <h2 className="text-3xl font-semibold text-gray-800">Sign in to your account</h2>
         <p className="text-gray-500 mt-2">Welcome back! Please enter your credentials</p>
 
-        <form className="w-full max-w-md mt-6">
+        <form onSubmit={handleSubmit} className="w-full max-w-md mt-6">
+          <label className="block text-gray-600 text-sm">Name</label>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          />
+          <p className={`${error?.name ? 'text-red-500' : 'hidden'}`}>Wrong Password</p>
           <label className="block text-gray-600 text-sm">Email</label>
           <input
             type="email"
             placeholder="your.email@example.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
+          <p className={`${error?.email ? 'text-red-500' : 'hidden'}`}>Wrong Password</p>
 
           <label className="block text-gray-600 text-sm mt-4">Password</label>
           <input
             type="password"
             placeholder="***************"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             className="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
           />
+          <p className={`${error?.password ? 'text-red-500' : 'hidden'}`}>{error?.password}</p>
 
           <div className="flex justify-between items-center mt-3">
             <div>
