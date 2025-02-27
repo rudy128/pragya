@@ -70,7 +70,7 @@ const Dashboard = () => {
   useEffect(()=>{
     const token = localStorage.getItem('token')
     if (!token) {
-      navigate('/signin')
+      navigate('/dashboard')
     }
   },[navigate])
   return (
